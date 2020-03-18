@@ -28,6 +28,9 @@ jobs:
           sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
           sudo apt-get update
           sudo apt-get install cf-cli
+          sudo cf api "$CF_API_URL"
+          sudo cf auth
+          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf routes
           sudo systemctl enable mysql.service
           sudo systemctl start mysql.service
