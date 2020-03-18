@@ -15,8 +15,7 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
-          MYSQL_PWD=root
-          mysql -uroot < databases/create_databases.sql
+          mysql --defaults-extra-file=config.cnf  < databases/create_databases.sql
           ./gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
