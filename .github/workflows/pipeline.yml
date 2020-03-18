@@ -23,15 +23,15 @@ jobs:
         with:
           java-version: 11
       - name: Create test database
+#          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+#          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+#          sudo apt-get update
+#          sudo apt-get install cf-cli
+#          sudo cf api "$CF_API_URL"
+#          sudo cf auth
+#          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+#          sudo cf routes
         run: |
-          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-          sudo apt-get update
-          sudo apt-get install cf-cli
-          sudo cf api "$CF_API_URL"
-          sudo cf auth
-          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          sudo cf routes
           sudo systemctl enable mysql.service
           sudo systemctl start mysql.service
           sudo mysql -uroot -proot < databases/create_databases.sql
@@ -85,8 +85,9 @@ jobs:
         with:
           name: pal-tracker-distributed
       - name: Deploy to cf
+#          sudo cf api "$CF_API_URL"
         run: |
-          sudo cf api "$CF_API_URL"
+          sudo cf api "pal-tracker-allocations-780449"
           sudo cf auth
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf push -f ./manifest-allocations.yml -p ./pal-tracker-distributed/allocations-server.jar
@@ -97,114 +98,114 @@ jobs:
           CF_USERNAME: ${{ secrets.CF_USERNAME }}
           CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
 
-  deploy-backlog:
-    needs: build-and-publish
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install Cf
-        run: |
-          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-          sudo apt-get update
-          sudo apt-get install cf-cli
-      - name: Download artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: pal-tracker-distributed
-      - name: Deploy to cf
-        run: |
-          sudo cf api "$CF_API_URL"
-          sudo cf auth
-          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          sudo cf push -f ./manifest-backlog.yml -p ./pal-tracker-distributed/backlog-server.jar
-        env:
-          CF_API_URL: ${{ secrets.CF_API_URL }}
-          CF_ORG: ${{ secrets.CF_ORG }}
-          CF_SPACE: ${{ secrets.CF_SPACE }}
-          CF_USERNAME: ${{ secrets.CF_USERNAME }}
-          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
-
-  deploy-registration:
-    needs: build-and-publish
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install Cf
-        run: |
-          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-          sudo apt-get update
-          sudo apt-get install cf-cli
-      - name: Download artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: pal-tracker-distributed
-      - name: Deploy to cf
-        run: |
-          sudo cf api "$CF_API_URL"
-          sudo cf auth
-          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          sudo cf push -f ./manifest-registration.yml -p ./pal-tracker-distributed/registration-server.jar
-        env:
-          CF_API_URL: ${{ secrets.CF_API_URL }}
-          CF_ORG: ${{ secrets.CF_ORG }}
-          CF_SPACE: ${{ secrets.CF_SPACE }}
-          CF_USERNAME: ${{ secrets.CF_USERNAME }}
-          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
-
-  deploy-timesheets:
-    needs: build-and-publish
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install Cf
-        run: |
-          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-          sudo apt-get update
-          sudo apt-get install cf-cli
-      - name: Download artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: pal-tracker-distributed
-      - name: Deploy to cf
-        run: |
-          sudo cf api "$CF_API_URL"
-          sudo cf auth
-          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          sudo cf push -f ./manifest-timesheets.yml -p ./pal-tracker-distributed/timesheets-server.jar
-        env:
-          CF_API_URL: ${{ secrets.CF_API_URL }}
-          CF_ORG: ${{ secrets.CF_ORG }}
-          CF_SPACE: ${{ secrets.CF_SPACE }}
-          CF_USERNAME: ${{ secrets.CF_USERNAME }}
-          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
-
-  migrate-databases:
-    needs:
-      - deploy-allocations
-      - deploy-backlog
-      - deploy-registration
-      - deploy-timesheets
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install Cf
-        run: |
-          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-          sudo apt-get update
-          sudo apt-get install cf-cli
-      - name: Migate tracker-database
-        run: |
-          sudo cf api "$CF_API_URL"
-          sudo cf auth
-          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          sudo ./gradlew cfMigrate
-        env:
-          CF_API_URL: ${{ secrets.CF_API_URL }}
-          CF_ORG: ${{ secrets.CF_ORG }}
-          CF_SPACE: ${{ secrets.CF_SPACE }}
-          CF_USERNAME: ${{ secrets.CF_USERNAME }}
-          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+#  deploy-backlog:
+#    needs: build-and-publish
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: Install Cf
+#        run: |
+#          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+#          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+#          sudo apt-get update
+#          sudo apt-get install cf-cli
+#      - name: Download artifact
+#        uses: actions/download-artifact@v1
+#        with:
+#          name: pal-tracker-distributed
+#      - name: Deploy to cf
+#        run: |
+#          sudo cf api "$CF_API_URL"
+#          sudo cf auth
+#          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+#          sudo cf push -f ./manifest-backlog.yml -p ./pal-tracker-distributed/backlog-server.jar
+#        env:
+#          CF_API_URL: ${{ secrets.CF_API_URL }}
+#          CF_ORG: ${{ secrets.CF_ORG }}
+#          CF_SPACE: ${{ secrets.CF_SPACE }}
+#          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+#          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+#
+#  deploy-registration:
+#    needs: build-and-publish
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: Install Cf
+#        run: |
+#          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+#          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+#          sudo apt-get update
+#          sudo apt-get install cf-cli
+#      - name: Download artifact
+#        uses: actions/download-artifact@v1
+#        with:
+#          name: pal-tracker-distributed
+#      - name: Deploy to cf
+#        run: |
+#          sudo cf api "$CF_API_URL"
+#          sudo cf auth
+#          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+#          sudo cf push -f ./manifest-registration.yml -p ./pal-tracker-distributed/registration-server.jar
+#        env:
+#          CF_API_URL: ${{ secrets.CF_API_URL }}
+#          CF_ORG: ${{ secrets.CF_ORG }}
+#          CF_SPACE: ${{ secrets.CF_SPACE }}
+#          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+#          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+#
+#  deploy-timesheets:
+#    needs: build-and-publish
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: Install Cf
+#        run: |
+#          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+#          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+#          sudo apt-get update
+#          sudo apt-get install cf-cli
+#      - name: Download artifact
+#        uses: actions/download-artifact@v1
+#        with:
+#          name: pal-tracker-distributed
+#      - name: Deploy to cf
+#        run: |
+#          sudo cf api "$CF_API_URL"
+#          sudo cf auth
+#          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+#          sudo cf push -f ./manifest-timesheets.yml -p ./pal-tracker-distributed/timesheets-server.jar
+#        env:
+#          CF_API_URL: ${{ secrets.CF_API_URL }}
+#          CF_ORG: ${{ secrets.CF_ORG }}
+#          CF_SPACE: ${{ secrets.CF_SPACE }}
+#          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+#          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+#
+#  migrate-databases:
+#    needs:
+#      - deploy-allocations
+#      - deploy-backlog
+#      - deploy-registration
+#      - deploy-timesheets
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: Install Cf
+#        run: |
+#          sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+#          sudo echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+#          sudo apt-get update
+#          sudo apt-get install cf-cli
+#      - name: Migate tracker-database
+#        run: |
+#          sudo cf api "$CF_API_URL"
+#          sudo cf auth
+#          sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+#          sudo ./gradlew cfMigrate
+#        env:
+#          CF_API_URL: ${{ secrets.CF_API_URL }}
+#          CF_ORG: ${{ secrets.CF_ORG }}
+#          CF_SPACE: ${{ secrets.CF_SPACE }}
+#          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+#          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
