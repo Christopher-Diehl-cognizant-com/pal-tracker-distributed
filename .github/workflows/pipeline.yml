@@ -28,7 +28,7 @@ jobs:
           mysql -uroot -proot < databases/create_databases.sql
           pwd
           sudo pwd
-          sudo ./gradlew testMigrate
+          sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
       - name: Publish allocations artifact
