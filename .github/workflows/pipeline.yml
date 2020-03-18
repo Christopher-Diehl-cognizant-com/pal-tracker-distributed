@@ -24,8 +24,7 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
-          systemctl mysql.service status
-          systemctl mysql.service start
+          ls -las /etc/init.d
           netstat -nap
           mysql -uroot -proot < databases/create_databases.sql
           ./gradlew testMigrate
