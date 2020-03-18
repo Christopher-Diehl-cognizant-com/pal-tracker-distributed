@@ -28,6 +28,7 @@ jobs:
           sudo systemctl start mysql.service
           mysql -uroot -proot < databases/create_databases.sql
           sudo pwd
+          sudo ls -las
           sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
