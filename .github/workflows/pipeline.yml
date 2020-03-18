@@ -24,7 +24,8 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
-          sudo /etc/init.d/mysql start
+          sudo systemctl enable mysql.service
+          sudo systemctl start mysql.service
           mysql -uroot -proot < databases/create_databases.sql
           sudo pwd
           sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
