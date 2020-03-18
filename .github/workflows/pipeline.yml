@@ -23,6 +23,8 @@ jobs:
         with:
           java-version: 11
       - name: Create test database
+        run: |
+          echo "hello"
       - name: Build with Gradle
         run: ./gradlew clean build
       - name: Publish allocations artifact
