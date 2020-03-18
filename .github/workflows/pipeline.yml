@@ -40,6 +40,12 @@ jobs:
           sudo chmod u+x gradlew
           sudo ls -las
           sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
+        env:
+          CF_API_URL: ${{ secrets.CF_API_URL }}
+          CF_ORG: ${{ secrets.CF_ORG }}
+          CF_SPACE: ${{ secrets.CF_SPACE }}
+          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
       - name: Build with Gradle
         run: sudo ./gradlew clean build
       - name: Publish allocations artifact
