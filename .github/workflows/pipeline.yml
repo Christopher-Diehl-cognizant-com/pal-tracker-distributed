@@ -33,7 +33,7 @@ jobs:
           sudo ls -las
           sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: sudo ./gradlew clean build
       - name: Publish allocations artifact
         uses: actions/upload-artifact@v1
         with:
