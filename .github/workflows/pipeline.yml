@@ -24,8 +24,9 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
+          whoami
           ls -las /etc/init.d
-          /etc/init.d/mysql start
+          sudo /etc/init.d/mysql start
           netstat -nap
           mysql -uroot -proot < databases/create_databases.sql
           ./gradlew testMigrate
