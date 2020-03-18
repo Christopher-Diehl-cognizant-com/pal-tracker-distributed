@@ -26,6 +26,8 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -uroot -proot < databases/create_databases.sql
+          ls -las
+          sudo ls -las
           sudo ./gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
