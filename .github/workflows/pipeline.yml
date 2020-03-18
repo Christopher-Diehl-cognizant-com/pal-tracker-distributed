@@ -24,6 +24,9 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
+          sudo apt-get update
+          sudo apt-get install cf-cli
+          sudo cf routes
           sudo systemctl enable mysql.service
           sudo systemctl start mysql.service
           sudo mysql -uroot -proot < databases/create_databases.sql
