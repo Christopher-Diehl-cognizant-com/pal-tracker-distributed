@@ -23,9 +23,6 @@ jobs:
         with:
           java-version: 11
       - name: Create test database
-        run: |
-          mysql -uroot -proot < databases/create_databases.sql
-          ./gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
       - name: Publish allocations artifact
