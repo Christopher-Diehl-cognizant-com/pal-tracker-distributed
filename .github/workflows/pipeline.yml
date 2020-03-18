@@ -26,7 +26,6 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -uroot -proot < databases/create_databases.sql
-          pwd
           sudo pwd
           sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
       - name: Build with Gradle
