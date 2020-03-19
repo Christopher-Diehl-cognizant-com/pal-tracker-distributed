@@ -2,5 +2,5 @@ databases {
     devDatabase = "tracker_allocations_dev"
     testDatabase = "tracker_allocations_test"
     cfDatabase = "tracker-allocations-database"
-    cfApp = "	pal-tracker-distributed-allocations-780449"
+    cfApp = "pal-tracker-distributed-allocations-780449"
 }
