@@ -2,11 +2,11 @@ applications:
 - name: tracker-timesheets
   path: ./applications/timesheets-server/build/libs/timesheets-server.jar
   routes:
-  - route: timesheets-pal-780449.cfapps.io
+  - route: pal-tracker-distributed-timesheets-780449.cfapps.io
   memory: 1G
   instances: 1
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-780449.cfapps.io
+    REGISTRATION_SERVER_ENDPOINT: http://pal-tracker-distributed-registration-780449.cfapps.io
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
   services:
   - tracker-timesheets-database
