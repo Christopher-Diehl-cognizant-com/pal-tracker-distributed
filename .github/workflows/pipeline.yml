@@ -77,7 +77,7 @@ jobs:
         run: |
           sudo cf api "$CF_API_URL"
           echo 1
-          sudo cf auth
+          sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           echo 2
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           echo 3
@@ -108,7 +108,7 @@ jobs:
       - name: Deploy to cf
         run: |
           sudo cf api "$CF_API_URL"
-          sudo cf auth
+          sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf push -f ./manifest-backlog.yml -p ./pal-tracker-distributed/backlog-server.jar
         env:
@@ -136,7 +136,7 @@ jobs:
       - name: Deploy to cf
         run: |
           sudo cf api "$CF_API_URL"
-          sudo cf auth
+          sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf push -f ./manifest-registration.yml -p ./pal-tracker-distributed/registration-server.jar
         env:
@@ -164,7 +164,7 @@ jobs:
       - name: Deploy to cf
         run: |
           sudo cf api "$CF_API_URL"
-          sudo cf auth
+          sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf push -f ./manifest-timesheets.yml -p ./pal-tracker-distributed/timesheets-server.jar
         env:
@@ -192,7 +192,7 @@ jobs:
       - name: Migate tracker-database
         run: |
           sudo cf api "$CF_API_URL"
-          sudo cf auth
+          sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo ./gradlew cfMigrate
         env:
