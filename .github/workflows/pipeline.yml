@@ -87,7 +87,7 @@ jobs:
       - name: Deploy to cf
 #          sudo cf api "$CF_API_URL"
         run: |
-          sudo cf api "pal-tracker-allocations-780449.cfapps.io"
+          sudo cf api "pal-tracker-distributed-allocations-780449.cfapps.io"
           sudo cf auth
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
           sudo cf push -f ./manifest-allocations.yml -p ./pal-tracker-distributed/allocations-server.jar
