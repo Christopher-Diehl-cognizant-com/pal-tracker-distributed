@@ -27,8 +27,9 @@ jobs:
           sudo systemctl enable mysql.service
           sudo systemctl start mysql.service
           sudo mysql -uroot -proot < databases/create_databases.sql
-          sudo chmod u+x gradlew
-          sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
+          sudo chmod u+x ./gradlew
+          #sudo /home/runner/work/pal-tracker-distributed/pal-tracker-distributed/gradlew testMigrate
+          sudo ./gradlew testMigrate
         env:
           CF_API_URL: ${{ secrets.CF_API_URL }}
           CF_ORG: ${{ secrets.CF_ORG }}
@@ -76,13 +77,9 @@ jobs:
       - name: Deploy to cf
         run: |
           sudo cf api "$CF_API_URL"
-          echo 1
           sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
-          echo 2
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
-          echo 3
           sudo cf push -f ./manifest-allocations.yml -p ./pal-tracker-distributed/allocations-server.jar
-          echo 4
         env:
           CF_API_URL: ${{ secrets.CF_API_URL }}
           CF_ORG: ${{ secrets.CF_ORG }}
@@ -194,6 +191,7 @@ jobs:
           sudo cf api "$CF_API_URL"
           sudo cf auth "$CF_USERNAME" "$CF_PASSWORD"
           sudo cf target -o "$CF_ORG" -s "$CF_SPACE"
+          sudo chmod u+x ./gradlew
           sudo ./gradlew cfMigrate
         env:
           CF_API_URL: ${{ secrets.CF_API_URL }}
