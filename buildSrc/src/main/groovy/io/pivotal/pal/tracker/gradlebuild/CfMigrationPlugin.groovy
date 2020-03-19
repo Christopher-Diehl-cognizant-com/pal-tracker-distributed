@@ -34,7 +34,7 @@ class CfMigrationPlugin implements Plugin<Project> {
                     doLast {
                         println "Opening Tunnel for $appName"
                         Thread.start {
-                            tunnelProcess = "cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName".execute()
+                            tunnelProcess = "sudo cf ssh -N -L ${TUNNEL_PORT}:${credentials['hostname']}:${credentials['port']} $appName".execute()
                         }
 
                         waitForTunnelConnectivity()
