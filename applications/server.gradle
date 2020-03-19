@@ -3,7 +3,7 @@ apply plugin: "io.spring.dependency-management"
 
 dependencyManagement {
     imports {
-        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:$springCloudServicesClientLibrariesVersion"
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:2.0.3.RELEASE"
     }
 }
 dependencies {
@@ -11,11 +11,11 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-starter-web"
 
-    compile "org.springframework.boot:spring-boot-starter-actuator"
-    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry"
     compile "com.zaxxer:HikariCP:$hikariVersion"
     compile "mysql:mysql-connector-java:$mysqlVersion"
     compile "ch.qos.logback:logback-classic:$logbackVersion"
 
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry"
     testCompile project(":components:test-support")
 }
