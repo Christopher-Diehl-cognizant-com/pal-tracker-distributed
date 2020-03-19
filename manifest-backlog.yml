@@ -7,6 +7,10 @@ applications:
   instances: 1
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+    MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS: 'always'
+    MANAGEMENT_HEALTH_CIRCUITBREAKERS_ENABLED: 'TRUE'
+    MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: 'info,health,metrics,circuitbreakers'
+    MANAGEMENT_HEALTH_HYSTRIX_ENABLED: 'TRUE'
   services:
   - tracker-backlog-database
   - tracker-service-registry
