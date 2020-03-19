@@ -2,5 +2,5 @@ databases {
     devDatabase = "tracker_registration_dev"
     testDatabase = "tracker_registration_test"
     cfDatabase = "tracker-registration-database"
-    cfApp = "tracker-registration"
+    cfApp = "pal-tracker-distributed-registration-780449"
 }

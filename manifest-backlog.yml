@@ -1,5 +1,5 @@
 applications:
-- name: tracker-backlog
+- name: pal-tracker-distributed-backlog-780449
   path: ./applications/backlog-server/build/libs/backlog-server.jar
   routes:
   - route: pal-tracker-distributed-backlog-780449.cfapps.io

@@ -1,5 +1,5 @@
 applications:
-- name: tracker-registration
+- name: pal-tracker-distributed-registration-780449
   path: ./applications/registration-server/build/libs/registration-server.jar
   routes:
   - route: pal-tracker-distributed-registration-780449.cfapps.io

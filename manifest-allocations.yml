@@ -1,5 +1,5 @@
 applications:
-- name: tracker-allocations
+- name: pal-tracker-distributed-allocations-780449
   path: ./applications/allocations-server/build/libs/allocations-server.jar
   routes:
   - route: pal-tracker-distributed-allocations-780449.cfapps.io

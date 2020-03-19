@@ -1,5 +1,5 @@
 applications:
-- name: tracker-timesheets
+- name: pal-tracker-distributed-timesheets-780449
   path: ./applications/timesheets-server/build/libs/timesheets-server.jar
   routes:
   - route: pal-tracker-distributed-timesheets-780449.cfapps.io
