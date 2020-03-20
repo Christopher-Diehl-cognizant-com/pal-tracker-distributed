@@ -2,10 +2,10 @@ import io.pivotal.pal.tracker.gradlebuild.DependenciesGraphPlugin
 
 buildscript {
 	ext {
-		springCloudVersion = "Finchley.SR4"
-		//        springCloudVersion = "Finchley.SR3"
-		springCloudServicesClientLibrariesVersion = "2.0.3.RELEASE"
-		//        springCloudServicesClientLibrariesVersion = "2.0.1.RELEASE"
+		//		springCloudVersion = "Finchley.SR4"
+		springCloudVersion = "Finchley.SR3"
+		//		springCloudServicesClientLibrariesVersion = "2.0.3.RELEASE"
+		springCloudServicesClientLibrariesVersion = "2.0.1.RELEASE"
 		springCloudCommonsVersion = "2.0.0.RELEASE"
 		springSecurityOAuthAutoconfigVersion = "2.1.0.RELEASE"
 		springCloudSsoVersion = "2.1.3.RELEASE"

@@ -25,5 +25,5 @@ bootRun.environment([
     "APPLICATION_OAUTH_ENABLED": true,
     "SECURITY_OAUTH2_CLIENT_CLIENT_ID": "tracker-client",
     "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "supersecret",
-    "EUREKA_CLIENT_OAUTH2_CLIENTID": "eureka-client"
+//    "EUREKA_CLIENT_OAUTH2_CLIENTID": "eureka-client"
 ])
