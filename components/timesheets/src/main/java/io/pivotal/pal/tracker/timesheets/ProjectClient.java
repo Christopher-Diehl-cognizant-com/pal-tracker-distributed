@@ -1,7 +1,6 @@
 package io.pivotal.pal.tracker.timesheets;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.pivotal.pal.tracker.timesheets.ProjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestOperations;

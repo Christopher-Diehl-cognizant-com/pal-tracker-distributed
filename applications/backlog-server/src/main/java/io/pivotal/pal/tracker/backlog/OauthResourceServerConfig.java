@@ -18,7 +18,7 @@ import org.springframework.web.client.RestOperations;
  */
 @Configuration
 @ConditionalOnProperty(value = "application.oauth-enabled", matchIfMissing = true)
-public class OauthResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class OauthResourceServerConfig extends ResourceServerConfigurerAdapter{
 
 	/**
 	 *
@@ -27,10 +27,10 @@ public class OauthResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 * @return
 	 */
 	@Bean
-    @LoadBalanced
-    public RestOperations restTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext oauth2ClientContext) {
-        return new OAuth2RestTemplate(resource, oauth2ClientContext);
-    }
+	@LoadBalanced
+	public RestOperations restTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext oauth2ClientContext){
+		return new OAuth2RestTemplate(resource, oauth2ClientContext);
+	}
 
 	/**
 	 *
@@ -38,10 +38,10 @@ public class OauthResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 * @throws Exception
 	 */
 	@Override
-    public void configure(HttpSecurity http) throws Exception {
-        // enforce authentication on our API endpoints.
-        http.authorizeRequests().anyRequest().authenticated();
-    }
+	public void configure(HttpSecurity http) throws Exception{
+		// enforce authentication on our API endpoints.
+		http.authorizeRequests().anyRequest().authenticated();
+	}
 
 	/**
 	 *
@@ -49,8 +49,8 @@ public class OauthResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 * @throws Exception
 	 */
 	@Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        // do not require a resource id in AccessToken.
-        resources.resourceId(null);
-    }
+	public void configure(ResourceServerSecurityConfigurer resources) throws Exception{
+		// do not require a resource id in AccessToken.
+		resources.resourceId(null);
+	}
 }
