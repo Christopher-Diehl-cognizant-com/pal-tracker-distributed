@@ -14,6 +14,10 @@ import static io.pivotal.pal.tracker.allocations.AllocationInfo.allocationInfoBu
 import static io.pivotal.pal.tracker.allocations.data.AllocationFields.allocationFieldsBuilder;
 import static java.util.stream.Collectors.toList;
 
+/**
+ *
+ * @author 780449
+ */
 @RestController
 @RequestMapping("/allocations")
 public class AllocationController {
@@ -21,13 +25,22 @@ public class AllocationController {
     private final AllocationDataGateway gateway;
     private final ProjectClient client;
 
-    public AllocationController(AllocationDataGateway gateway, ProjectClient client) {
+	/**
+	 *
+	 * @param gateway
+	 * @param client
+	 */
+	public AllocationController(AllocationDataGateway gateway, ProjectClient client) {
         this.gateway = gateway;
         this.client = client;
     }
 
-
-    @PostMapping
+	/**
+	 *
+	 * @param form
+	 * @return
+	 */
+	@PostMapping
     public ResponseEntity<AllocationInfo> create(@RequestBody AllocationForm form) {
 
         if (projectIsActive(form.projectId)) {
@@ -38,7 +51,12 @@ public class AllocationController {
         return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
-    @GetMapping
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	@GetMapping
     public List<AllocationInfo> list(@RequestParam long projectId) {
         return gateway.findAllByProjectId(projectId)
             .stream()

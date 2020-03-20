@@ -15,18 +15,29 @@ import static io.pivotal.pal.tracker.backlog.data.StoryFields.storyFieldsBuilder
 import static io.pivotal.pal.tracker.backlog.data.StoryRecord.storyRecordBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class StoryDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_backlog_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private StoryDataGateway gateway = new StoryDataGateway(testScenarioSupport.dataSource);
 
-    @Before
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Before
     public void setUp() throws Exception {
         template.execute("DELETE FROM stories;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         StoryFields fields = storyFieldsBuilder()
             .projectId(22L)
@@ -47,7 +58,10 @@ public class StoryDataGatewayTest {
         assertThat(persisted.get("name")).isEqualTo("aStory");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFindBy() {
         template.execute("insert into stories (id, project_id, name) values (1346, 22, 'aStory')");
 

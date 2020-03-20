@@ -11,16 +11,29 @@ import java.util.List;
 import static io.pivotal.pal.tracker.accounts.AccountInfo.accountInfoBuilder;
 import static java.util.stream.Collectors.toList;
 
+/**
+ *
+ * @author 780449
+ */
 @RestController
 public class AccountController {
 
     private final AccountDataGateway gateway;
 
-    public AccountController(AccountDataGateway gateway) {
+	/**
+	 *
+	 * @param gateway
+	 */
+	public AccountController(AccountDataGateway gateway) {
         this.gateway = gateway;
     }
 
-    @GetMapping("/accounts")
+	/**
+	 *
+	 * @param ownerId
+	 * @return
+	 */
+	@GetMapping("/accounts")
     public List<AccountInfo> list(@RequestParam long ownerId) {
         return gateway.findAllByOwnerId(ownerId)
             .stream()

@@ -14,16 +14,29 @@ import java.util.List;
 import static io.pivotal.pal.tracker.timesheets.data.TimeEntryRecord.timeEntryRecordBuilder;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class TimeEntryDataGateway {
 
     private JdbcTemplate jdbcTemplate;
 
-    public TimeEntryDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public TimeEntryDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public TimeEntryRecord create(TimeEntryFields fields) {
+	/**
+	 *
+	 * @param fields
+	 * @return
+	 */
+	public TimeEntryRecord create(TimeEntryFields fields) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(
@@ -40,7 +53,12 @@ public class TimeEntryDataGateway {
         return find(keyHolder.getKey().longValue());
     }
 
-    public List<TimeEntryRecord> findAllByUserId(long userId) {
+	/**
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public List<TimeEntryRecord> findAllByUserId(long userId) {
         return jdbcTemplate.query(
             "select id, project_id, user_id, date, hours from time_entries where user_id = ?",
             rowMapper, userId

@@ -2,13 +2,36 @@ package io.pivotal.pal.tracker.timesheets.data;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryRecord {
 
-    public final long id;
-    public final long projectId;
-    public final long userId;
-    public final LocalDate date;
-    public final int hours;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final LocalDate date;
+
+	/**
+	 *
+	 */
+	public final int hours;
 
     private TimeEntryRecord(Builder builder) {
         id = builder.id;
@@ -18,11 +41,18 @@ public class TimeEntryRecord {
         hours = builder.hours;
     }
 
-    public static Builder timeEntryRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder timeEntryRecordBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
 
         private long id;
         private long projectId;
@@ -30,31 +60,60 @@ public class TimeEntryRecord {
         private LocalDate date;
         private int hours;
 
-        public TimeEntryRecord build() {
+			/**
+			 *
+			 * @return
+			 */
+			public TimeEntryRecord build() {
             return new TimeEntryRecord(this);
         }
 
-        public Builder id(long id) {
+			/**
+			 *
+			 * @param id
+			 * @return
+			 */
+			public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+		/**
+		 *
+		 * @param userId
+		 * @return
+		 */
+		public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder date(LocalDate date) {
+			/**
+			 *
+			 * @param date
+			 * @return
+			 */
+			public Builder date(LocalDate date) {
             this.date = date;
             return this;
         }
 
-        public Builder hours(int hours) {
+		/**
+		 *
+		 * @param hours
+		 * @return
+		 */
+		public Builder hours(int hours) {
             this.hours = hours;
             return this;
         }

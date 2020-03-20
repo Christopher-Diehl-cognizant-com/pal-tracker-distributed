@@ -13,15 +13,29 @@ import java.util.List;
 import static io.pivotal.pal.tracker.accounts.data.AccountRecord.accountRecordBuilder;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class AccountDataGateway {
     private final JdbcTemplate jdbcTemplate;
 
-    public AccountDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public AccountDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public AccountRecord create(long ownerId, String name) {
+	/**
+	 *
+	 * @param ownerId
+	 * @param name
+	 * @return
+	 */
+	public AccountRecord create(long ownerId, String name) {
         KeyHolder keyholder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -39,7 +53,12 @@ public class AccountDataGateway {
         return jdbcTemplate.queryForObject("select id, owner_id, name from accounts where id = ?", rowMapper, id);
     }
 
-    public List<AccountRecord> findAllByOwnerId(long ownerId) {
+	/**
+	 *
+	 * @param ownerId
+	 * @return
+	 */
+	public List<AccountRecord> findAllByOwnerId(long ownerId) {
         return jdbcTemplate.query(
             "select id, owner_id, name from accounts where owner_id = ? order by name desc limit 1",
             rowMapper, ownerId

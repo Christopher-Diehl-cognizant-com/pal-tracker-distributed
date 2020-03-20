@@ -17,15 +17,20 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static test.pivotal.pal.tracker.allocations.TestBuilders.*;
 
-
+/**
+ *
+ * @author 780449
+ */
 public class AllocationControllerTest {
 
     private AllocationDataGateway allocationDataGateway = mock(AllocationDataGateway.class);
     private ProjectClient client = mock(ProjectClient.class);
     private AllocationController allocationsController = new AllocationController(allocationDataGateway, client);
 
-
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         AllocationRecord record = testAllocationRecordBuilder()
             .id(20L)
@@ -59,7 +64,10 @@ public class AllocationControllerTest {
         );
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate_WhenProjectIsNotActive() {
         doReturn(new ProjectInfo(false)).when(client).getProject(anyLong());
 
@@ -72,7 +80,10 @@ public class AllocationControllerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testList() {
         List<AllocationRecord> records = asList(
             testAllocationRecordBuilder().id(12L).build(),

@@ -6,9 +6,16 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class RegistrationAppTest {
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void embedded() {
         App.main(new String[]{});
 

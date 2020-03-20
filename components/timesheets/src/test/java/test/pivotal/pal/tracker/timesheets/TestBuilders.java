@@ -12,9 +12,17 @@ import static io.pivotal.pal.tracker.timesheets.TimeEntryInfo.timeEntryInfoBuild
 import static io.pivotal.pal.tracker.timesheets.data.TimeEntryFields.timeEntryFieldsBuilder;
 import static io.pivotal.pal.tracker.timesheets.data.TimeEntryRecord.timeEntryRecordBuilder;
 
+/**
+ *
+ * @author 780449
+ */
 public class TestBuilders {
 
-    public static TimeEntryRecord.Builder testTimeEntryRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static TimeEntryRecord.Builder testTimeEntryRecordBuilder() {
         return timeEntryRecordBuilder()
             .id(11)
             .projectId(12)
@@ -23,7 +31,11 @@ public class TestBuilders {
             .hours(20);
     }
 
-    public static TimeEntryFields.Builder testTimeEntryFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static TimeEntryFields.Builder testTimeEntryFieldsBuilder() {
         return timeEntryFieldsBuilder()
             .projectId(12)
             .userId(13)
@@ -31,7 +43,11 @@ public class TestBuilders {
             .hours(20);
     }
 
-    public static TimeEntryForm.Builder testTimeEntryFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static TimeEntryForm.Builder testTimeEntryFormBuilder() {
         return timeEntryFormBuilder()
             .projectId(12)
             .userId(13)
@@ -39,7 +55,11 @@ public class TestBuilders {
             .hours(20);
     }
 
-    public static TimeEntryInfo.Builder testTimeEntryInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static TimeEntryInfo.Builder testTimeEntryInfoBuilder() {
         return timeEntryInfoBuilder()
             .id(11)
             .projectId(12)

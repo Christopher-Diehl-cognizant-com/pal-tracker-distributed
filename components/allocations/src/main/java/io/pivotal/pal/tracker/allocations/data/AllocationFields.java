@@ -2,50 +2,104 @@ package io.pivotal.pal.tracker.allocations.data;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author 780449
+ */
 public class AllocationFields {
 
-    public final long projectId;
-    public final long userId;
-    public final LocalDate firstDay;
-    public final LocalDate lastDay;
+	/**
+	 *
+	 */
+	public final long projectId;
 
-    public AllocationFields(Builder builder) {
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final LocalDate firstDay;
+
+	/**
+	 *
+	 */
+	public final LocalDate lastDay;
+
+	/**
+	 *
+	 * @param builder
+	 */
+	public AllocationFields(Builder builder) {
         projectId = builder.projectId;
         userId = builder.userId;
         firstDay = builder.firstDay;
         lastDay = builder.lastDay;
     }
 
-    public static Builder allocationFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder allocationFieldsBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long projectId;
         private long userId;
         private LocalDate firstDay;
         private LocalDate lastDay;
 
-        public AllocationFields build() {
+		/**
+		 *
+		 * @return
+		 */
+		public AllocationFields build() {
             return new AllocationFields(this);
         }
 
-        public Builder projectId(long projectId) {
+			/**
+			 *
+			 * @param projectId
+			 * @return
+			 */
+			public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+			/**
+			 *
+			 * @param userId
+			 * @return
+			 */
+			public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder firstDay(LocalDate firstDay) {
+			/**
+			 *
+			 * @param firstDay
+			 * @return
+			 */
+			public Builder firstDay(LocalDate firstDay) {
             this.firstDay = firstDay;
             return this;
         }
 
-        public Builder lastDay(LocalDate lastDay) {
+			/**
+			 *
+			 * @param lastDay
+			 * @return
+			 */
+			public Builder lastDay(LocalDate lastDay) {
             this.lastDay = lastDay;
             return this;
         }

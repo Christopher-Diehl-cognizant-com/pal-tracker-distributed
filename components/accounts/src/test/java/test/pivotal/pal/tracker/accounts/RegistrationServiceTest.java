@@ -9,12 +9,19 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+/**
+ *
+ * @author 780449
+ */
 public class RegistrationServiceTest {
     private UserDataGateway userDataGateway = mock(UserDataGateway.class);
     private AccountDataGateway accountDataGateway = mock(AccountDataGateway.class);
     private RegistrationService service = new RegistrationService(userDataGateway, accountDataGateway);
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreateUserWithAccount() {
         UserRecord createdUser = new UserRecord(22L, "Some User");
         doReturn(createdUser).when(userDataGateway).create("Some User");

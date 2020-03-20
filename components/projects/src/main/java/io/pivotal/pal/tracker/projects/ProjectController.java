@@ -13,23 +13,41 @@ import static io.pivotal.pal.tracker.projects.ProjectInfo.projectInfoBuilder;
 import static io.pivotal.pal.tracker.projects.data.ProjectFields.projectFieldsBuilder;
 import static java.util.stream.Collectors.toList;
 
+/**
+ *
+ * @author 780449
+ */
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {
 
     private final ProjectDataGateway gateway;
 
-    public ProjectController(ProjectDataGateway gateway) {
+	/**
+	 *
+	 * @param gateway
+	 */
+	public ProjectController(ProjectDataGateway gateway) {
         this.gateway = gateway;
     }
 
-    @PostMapping
+	/**
+	 *
+	 * @param form
+	 * @return
+	 */
+	@PostMapping
     public ResponseEntity<ProjectInfo> create(@RequestBody ProjectForm form) {
         ProjectRecord record = gateway.create(formToFields(form));
         return new ResponseEntity<>(present(record), HttpStatus.CREATED);
     }
 
-    @GetMapping
+	/**
+	 *
+	 * @param accountId
+	 * @return
+	 */
+	@GetMapping
     public List<ProjectInfo> list(@RequestParam long accountId) {
         return gateway.findAllByAccountId(accountId)
             .stream()
@@ -37,7 +55,12 @@ public class ProjectController {
             .collect(toList());
     }
 
-    @GetMapping("/{projectId}")
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	@GetMapping("/{projectId}")
     public ProjectInfo get(@PathVariable long projectId) {
         ProjectRecord record = gateway.find(projectId);
 

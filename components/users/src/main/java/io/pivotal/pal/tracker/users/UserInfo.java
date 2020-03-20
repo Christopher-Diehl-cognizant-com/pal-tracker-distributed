@@ -1,12 +1,33 @@
 package io.pivotal.pal.tracker.users;
 
+/**
+ *
+ * @author 780449
+ */
 public class UserInfo {
 
-    public final long id;
-    public final String name;
-    public final String info;
+	/**
+	 *
+	 */
+	public final long id;
 
-    public UserInfo(long id, String name, String info) {
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final String info;
+
+	/**
+	 *
+	 * @param id
+	 * @param name
+	 * @param info
+	 */
+	public UserInfo(long id, String name, String info) {
         this.id = id;
         this.name = name;
         this.info = info;

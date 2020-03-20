@@ -17,18 +17,28 @@ import static io.pivotal.pal.tracker.allocations.data.AllocationFields.allocatio
 import static io.pivotal.pal.tracker.allocations.data.AllocationRecord.allocationRecordBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class AllocationDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_allocations_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private AllocationDataGateway gateway = new AllocationDataGateway(testScenarioSupport.dataSource);
 
-    @Before
+	/**
+	 *
+	 */
+	@Before
     public void setup() {
         template.execute("delete from allocations;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         AllocationFields fields = allocationFieldsBuilder()
             .projectId(22L)
@@ -55,7 +65,10 @@ public class AllocationDataGatewayTest {
         assertThat(persisted.get("last_day")).isEqualTo(Timestamp.valueOf("2016-09-17 00:00:00"));
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFindAllByProjectId() {
         template.execute("insert into allocations (id, project_id, user_id, first_day, last_day) values (97336, 22, 12, '2016-01-13', '2016-09-17')");
 

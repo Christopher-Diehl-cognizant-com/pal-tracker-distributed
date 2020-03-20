@@ -13,17 +13,29 @@ import java.util.List;
 import static io.pivotal.pal.tracker.projects.data.ProjectRecord.projectRecordBuilder;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class ProjectDataGateway {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ProjectDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public ProjectDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-    public ProjectRecord create(ProjectFields fields) {
+	/**
+	 *
+	 * @param fields
+	 * @return
+	 */
+	public ProjectRecord create(ProjectFields fields) {
         KeyHolder keyholder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -38,14 +50,24 @@ public class ProjectDataGateway {
         return find(keyholder.getKey().longValue());
     }
 
-    public List<ProjectRecord> findAllByAccountId(Long accountId) {
+	/**
+	 *
+	 * @param accountId
+	 * @return
+	 */
+	public List<ProjectRecord> findAllByAccountId(Long accountId) {
         return jdbcTemplate.query(
             "select id, account_id, name, active from projects where account_id = ? order by name asc",
             rowMapper, accountId
         );
     }
 
-    public ProjectRecord find(long id) {
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public ProjectRecord find(long id) {
         List<ProjectRecord> list = jdbcTemplate.query(
             "select id, account_id, name, active from projects where id = ? order by name asc",
             rowMapper, id

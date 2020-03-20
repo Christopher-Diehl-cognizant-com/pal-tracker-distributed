@@ -12,21 +12,31 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class UserDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_registration_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private UserDataGateway gateway = new UserDataGateway(testScenarioSupport.dataSource);
 
-
-    @Before
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Before
     public void setUp() throws Exception {
         template.execute("DELETE FROM projects;");
         template.execute("DELETE FROM accounts;");
         template.execute("DELETE FROM users;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         UserRecord createdUser = gateway.create("aUser");
 
@@ -39,7 +49,10 @@ public class UserDataGatewayTest {
         assertThat(persistedFields.get("name")).isEqualTo(createdUser.name);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFind() {
         template.execute("INSERT INTO users(id, name) VALUES (42346, 'aName'), (42347, 'anotherName'), (42348, 'andAnotherName')");
 
@@ -50,7 +63,10 @@ public class UserDataGatewayTest {
         assertThat(record).isEqualTo(new UserRecord(42347L, "anotherName"));
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFind_WhenNotFound() {
         assertThat(gateway.find(42347L)).isNull();
     }

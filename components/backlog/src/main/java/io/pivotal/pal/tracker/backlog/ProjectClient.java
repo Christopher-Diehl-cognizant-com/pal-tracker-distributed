@@ -7,6 +7,11 @@ import org.springframework.web.client.RestOperations;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ *
+ * @author 780449
+ */
 public class ProjectClient {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -14,12 +19,22 @@ public class ProjectClient {
     private final RestOperations restOperations;
     private final String endpoint;
 
-    public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
+	/**
+	 *
+	 * @param restOperations
+	 * @param registrationServerEndpoint
+	 */
+	public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
         this.restOperations = restOperations;
         this.endpoint = registrationServerEndpoint;
     }
 
-    @CircuitBreaker(name = "project", fallbackMethod = "getProjectFromCache")
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	@CircuitBreaker(name = "project", fallbackMethod = "getProjectFromCache")
     public ProjectInfo getProject(long projectId) {
         ProjectInfo project = restOperations.getForObject(endpoint + "/projects/" + projectId, ProjectInfo.class);
 
@@ -28,7 +43,13 @@ public class ProjectClient {
         return project;
     }
 
-    public ProjectInfo getProjectFromCache(long projectId, Throwable cause) {
+	/**
+	 *
+	 * @param projectId
+	 * @param cause
+	 * @return
+	 */
+	public ProjectInfo getProjectFromCache(long projectId, Throwable cause) {
         logger.info("Getting project with id {} from cache", projectId);
         return projectsCache.get(projectId);
     }

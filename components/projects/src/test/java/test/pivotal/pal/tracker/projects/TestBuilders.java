@@ -10,9 +10,17 @@ import static io.pivotal.pal.tracker.projects.ProjectInfo.projectInfoBuilder;
 import static io.pivotal.pal.tracker.projects.data.ProjectFields.projectFieldsBuilder;
 import static io.pivotal.pal.tracker.projects.data.ProjectRecord.projectRecordBuilder;
 
+/**
+ *
+ * @author 780449
+ */
 public class TestBuilders {
 
-    public static ProjectRecord.Builder testProjectRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static ProjectRecord.Builder testProjectRecordBuilder() {
         return projectRecordBuilder()
             .id(9L)
             .accountId(23L)
@@ -20,7 +28,11 @@ public class TestBuilders {
             .active(true);
     }
 
-    public static ProjectInfo.Builder testProjectInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static ProjectInfo.Builder testProjectInfoBuilder() {
         return projectInfoBuilder()
             .id(9L)
             .accountId(23L)
@@ -29,14 +41,22 @@ public class TestBuilders {
             .info("project info");
     }
 
-    public static ProjectFields.Builder testProjectFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static ProjectFields.Builder testProjectFieldsBuilder() {
         return projectFieldsBuilder()
             .accountId(23L)
             .name("MyInfo")
             .active(true);
     }
 
-    public static ProjectForm.Builder testProjectFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static ProjectForm.Builder testProjectFormBuilder() {
         return projectFormBuilder()
             .accountId(23L)
             .name("MyInfo")

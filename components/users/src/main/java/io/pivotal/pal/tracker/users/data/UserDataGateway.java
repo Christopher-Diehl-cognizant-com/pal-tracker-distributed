@@ -12,17 +12,29 @@ import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class UserDataGateway {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public UserDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-    public UserRecord create(String name) {
+	/**
+	 *
+	 * @param name
+	 * @return
+	 */
+	public UserRecord create(String name) {
         KeyHolder keyholder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -34,7 +46,12 @@ public class UserDataGateway {
         return find(keyholder.getKey().longValue());
     }
 
-    public UserRecord find(long id) {
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public UserRecord find(long id) {
         List<UserRecord> list = jdbcTemplate.query("select id, name from users where id = ? limit 1", rowMapper, id);
 
         if (list.isEmpty()) {

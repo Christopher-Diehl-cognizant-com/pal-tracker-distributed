@@ -6,6 +6,10 @@ import okhttp3.*;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ *
+ * @author 780449
+ */
 public class HttpClient {
 
     private static final MediaType JSON = MediaType.parse("application/json");
@@ -13,12 +17,22 @@ public class HttpClient {
     private final OkHttpClient okHttp = new OkHttpClient();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-
-    public Response get(String url) {
+	/**
+	 *
+	 * @param url
+	 * @return
+	 */
+	public Response get(String url) {
         return fetch(new Request.Builder().url(url));
     }
 
-    public Response post(String url, Map<String, Object> jsonBody) {
+	/**
+	 *
+	 * @param url
+	 * @param jsonBody
+	 * @return
+	 */
+	public Response post(String url, Map<String, Object> jsonBody) {
         try {
             Request.Builder reqBuilder = new Request.Builder()
                 .url(url)
@@ -30,7 +44,13 @@ public class HttpClient {
         }
     }
 
-    public Response put(String url, Map<String, Object> jsonBody) {
+	/**
+	 *
+	 * @param url
+	 * @param jsonBody
+	 * @return
+	 */
+	public Response put(String url, Map<String, Object> jsonBody) {
         try {
             Request.Builder reqBuilder = new Request.Builder()
                 .url(url)
@@ -42,7 +62,12 @@ public class HttpClient {
         }
     }
 
-    public Response delete(String url) {
+	/**
+	 *
+	 * @param url
+	 * @return
+	 */
+	public Response delete(String url) {
         return fetch(new Request.Builder().delete().url(url));
     }
 

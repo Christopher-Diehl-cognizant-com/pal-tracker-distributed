@@ -1,11 +1,27 @@
 package io.pivotal.pal.tracker.users.data;
 
+/**
+ *
+ * @author 780449
+ */
 public class UserRecord {
 
-    public final long id;
-    public final String name;
+	/**
+	 *
+	 */
+	public final long id;
 
-    public UserRecord(long id, String name) {
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 * @param id
+	 * @param name
+	 */
+	public UserRecord(long id, String name) {
         this.id = id;
         this.name = name;
     }

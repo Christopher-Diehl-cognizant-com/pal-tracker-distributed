@@ -16,15 +16,20 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static test.pivotal.pal.tracker.timesheets.TestBuilders.*;
 
-
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryControllerTest {
 
     private TimeEntryDataGateway gateway = mock(TimeEntryDataGateway.class);
     private ProjectClient client = mock(ProjectClient.class);
     private TimeEntryController controller = new TimeEntryController(gateway, client);
 
-
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         TimeEntryRecord record = testTimeEntryRecordBuilder().projectId(12).build();
         TimeEntryFields fields = testTimeEntryFieldsBuilder().projectId(12).build();
@@ -42,7 +47,10 @@ public class TimeEntryControllerTest {
         assertThat(result.getBody()).isEqualTo(testTimeEntryInfoBuilder().projectId(12).build());
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate_WhenFailed() {
         doReturn(new ProjectInfo(false)).when(client).getProject(anyLong());
 
@@ -53,7 +61,10 @@ public class TimeEntryControllerTest {
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testList() {
         List<TimeEntryRecord> records = asList(
             testTimeEntryRecordBuilder().id(10).build(),

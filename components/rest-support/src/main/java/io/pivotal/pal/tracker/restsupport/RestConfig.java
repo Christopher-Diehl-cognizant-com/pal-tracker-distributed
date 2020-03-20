@@ -8,17 +8,28 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
-
+/**
+ *
+ * @author 780449
+ */
 @Configuration
 public class RestConfig {
 
-    @Bean
+	/**
+	 *
+	 * @return
+	 */
+	@Bean
     @LoadBalanced
     public RestOperations restOperations() {
         return new RestTemplate();
     }
 
-    @Bean
+	/**
+	 *
+	 * @return
+	 */
+	@Bean
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

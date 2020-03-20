@@ -11,12 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ *
+ * @author 780449
+ */
 public class RegistrationControllerTest {
 
     private RegistrationService registrationService = mock(RegistrationService.class);
     private RegistrationController registrationController = new RegistrationController(registrationService);
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void create() {
         UserRecord userRecord = new UserRecord(24L, "Billy");
         doReturn(userRecord).when(registrationService).createUserWithAccount(any());

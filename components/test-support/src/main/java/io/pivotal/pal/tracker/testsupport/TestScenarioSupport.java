@@ -5,18 +5,36 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.TimeZone;
 
+/**
+ *
+ * @author 780449
+ */
 public class TestScenarioSupport {
 
-    public final JdbcTemplate template;
-    public final DataSource dataSource;
+	/**
+	 *
+	 */
+	public final JdbcTemplate template;
 
-    public TestScenarioSupport(String dbName) {
+	/**
+	 *
+	 */
+	public final DataSource dataSource;
+
+	/**
+	 *
+	 * @param dbName
+	 */
+	public TestScenarioSupport(String dbName) {
         dataSource = TestDataSourceFactory.create(dbName);
         template = new JdbcTemplate(dataSource);
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 
-    public static void clearAllDatabases() {
+	/**
+	 *
+	 */
+	public static void clearAllDatabases() {
         clearTables("tracker_allocations_test", "allocations");
         clearTables("tracker_backlog_test", "stories");
         clearTables("tracker_registration_test", "projects", "accounts", "users");

@@ -1,18 +1,45 @@
 package io.pivotal.pal.tracker.projects;
 
+/**
+ *
+ * @author 780449
+ */
 public class ProjectInfo {
 
-    public final long id;
-    public final long accountId;
-    public final String name;
-    public final boolean active;
-    public final String info;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long accountId;
+
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final boolean active;
+
+	/**
+	 *
+	 */
+	public final String info;
 
     private ProjectInfo() {
         this(projectInfoBuilder());
     }
 
-    public ProjectInfo(Builder builder) {
+	/**
+	 *
+	 * @param builder
+	 */
+	public ProjectInfo(Builder builder) {
         id = builder.id;
         accountId = builder.accountId;
         name = builder.name;
@@ -20,42 +47,78 @@ public class ProjectInfo {
         info = builder.info;
     }
 
-    public static Builder projectInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder projectInfoBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long accountId;
         private String name;
         private boolean active;
         private String info;
 
-        public ProjectInfo build() {
+			/**
+			 *
+			 * @return
+			 */
+			public ProjectInfo build() {
             return new ProjectInfo(this);
         }
 
-        public Builder id(long id) {
+		/**
+		 *
+		 * @param id
+		 * @return
+		 */
+		public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder accountId(long accountId) {
+			/**
+			 *
+			 * @param accountId
+			 * @return
+			 */
+			public Builder accountId(long accountId) {
             this.accountId = accountId;
             return this;
         }
 
-        public Builder name(String name) {
+			/**
+			 *
+			 * @param name
+			 * @return
+			 */
+			public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder active(boolean active) {
+		/**
+		 *
+		 * @param active
+		 * @return
+		 */
+		public Builder active(boolean active) {
             this.active = active;
             return this;
         }
 
-        public Builder info(String info) {
+			/**
+			 *
+			 * @param info
+			 * @return
+			 */
+			public Builder info(String info) {
             this.info = info;
             return this;
         }

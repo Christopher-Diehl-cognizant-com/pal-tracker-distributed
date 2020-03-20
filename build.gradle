@@ -1,65 +1,66 @@
 import io.pivotal.pal.tracker.gradlebuild.DependenciesGraphPlugin
 
 buildscript {
-    ext {
-//        springCloudVersion = "Finchley.SR4"
-        springCloudVersion = "Finchley.SR3"
-//        springCloudServicesClientLibrariesVersion = "2.0.3.RELEASE"
-        springCloudServicesClientLibrariesVersion = "2.0.1.RELEASE"
-//				springSecurityOAuthAutoconfigVersion = "2.1.0.RELEASE" 
-//				springCloudSsoVersion = "2.1.3.RELEASE"
-				springBootVersion = "2.0.6.RELEASE"
-        springVersion = "5.0.9.RELEASE"
-        mysqlVersion = "8.0.13"
-        jacksonVersion = "2.9.7"
-        slf4jVersion = "1.7.25"
-        mockitoVersion = "2.23.0"
-        assertJVersion = "3.11.1"
-        hikariVersion = "3.1.0"
-        logbackVersion = "1.2.3"
-        junitVersion = "4.12"
-        okhttpVersion = "3.12.0"
-        jsonPathVersion = "2.4.0"
-    }
+	ext {
+		springCloudVersion = "Finchley.SR4"
+		//        springCloudVersion = "Finchley.SR3"
+		springCloudServicesClientLibrariesVersion = "2.0.3.RELEASE"
+		//        springCloudServicesClientLibrariesVersion = "2.0.1.RELEASE"
+		springCloudCommonsVersion = "2.0.0.RELEASE"
+		springSecurityOAuthAutoconfigVersion = "2.1.0.RELEASE"
+		springCloudSsoVersion = "2.1.3.RELEASE"
+		springBootVersion = "2.0.6.RELEASE"
+		springVersion = "5.0.9.RELEASE"
+		mysqlVersion = "8.0.13"
+		jacksonVersion = "2.9.7"
+		slf4jVersion = "1.7.25"
+		mockitoVersion = "2.23.0"
+		assertJVersion = "3.11.1"
+		hikariVersion = "3.1.0"
+		logbackVersion = "1.2.3"
+		junitVersion = "4.12"
+		okhttpVersion = "3.12.0"
+		jsonPathVersion = "2.4.0"
+	}
 
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
 
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        classpath "mysql:mysql-connector-java:$mysqlVersion"
-    }
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+		classpath "mysql:mysql-connector-java:$mysqlVersion"
+	}
 }
 
 apply plugin: DependenciesGraphPlugin
 
 subprojects {
-    group "io.pivotal.pal.tracker"
+	group "io.pivotal.pal.tracker"
 
-    apply plugin: "java"
-    defaultTasks "clean", "build"
+	apply plugin: "java"
+	defaultTasks "clean", "build"
 
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
 
-    dependencies {
-        compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-        compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-        compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
-        compile "org.slf4j:slf4j-api:$slf4jVersion"
+	dependencies {
+		compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+		compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+		compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+		compile "org.slf4j:slf4j-api:$slf4jVersion"
 
-        testCompile "junit:junit:$junitVersion"
-        testCompile "org.mockito:mockito-core:$mockitoVersion"
-        testCompile "org.assertj:assertj-core:$assertJVersion"
-    }
+		testCompile "junit:junit:$junitVersion"
+		testCompile "org.mockito:mockito-core:$mockitoVersion"
+		testCompile "org.assertj:assertj-core:$assertJVersion"
+	}
 
-    test {
-        testLogging {
-            exceptionFormat = 'full'
-        }
-    }
+	test {
+		testLogging {
+			exceptionFormat = 'full'
+		}
+	}
 }

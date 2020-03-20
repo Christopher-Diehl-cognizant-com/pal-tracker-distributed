@@ -13,19 +13,32 @@ import static io.pivotal.pal.tracker.backlog.StoryInfo.storyInfoBuilder;
 import static io.pivotal.pal.tracker.backlog.data.StoryFields.storyFieldsBuilder;
 import static java.util.stream.Collectors.toList;
 
+/**
+ *
+ * @author 780449
+ */
 @RestController
 @RequestMapping("/stories")
 public class StoryController {
     private final StoryDataGateway gateway;
     private final ProjectClient client;
 
-    public StoryController(StoryDataGateway gateway, ProjectClient client) {
+	/**
+	 *
+	 * @param gateway
+	 * @param client
+	 */
+	public StoryController(StoryDataGateway gateway, ProjectClient client) {
         this.gateway = gateway;
         this.client = client;
     }
 
-
-    @PostMapping
+	/**
+	 *
+	 * @param form
+	 * @return
+	 */
+	@PostMapping
     public ResponseEntity<StoryInfo> create(@RequestBody StoryForm form) {
         if (projectIsActive(form.projectId)) {
             StoryRecord record = gateway.create(mapToFields(form));
@@ -35,7 +48,12 @@ public class StoryController {
         return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
-    @GetMapping
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	@GetMapping
     public List<StoryInfo> list(@RequestParam long projectId) {
         return gateway.findAllByProjectId(projectId).stream()
             .map(this::present)

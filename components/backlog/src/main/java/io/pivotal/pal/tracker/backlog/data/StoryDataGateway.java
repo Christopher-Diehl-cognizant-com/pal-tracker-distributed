@@ -13,15 +13,28 @@ import java.util.List;
 import static io.pivotal.pal.tracker.backlog.data.StoryRecord.storyRecordBuilder;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class StoryDataGateway {
     private final JdbcTemplate jdbcTemplate;
 
-    public StoryDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public StoryDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public StoryRecord create(StoryFields fields) {
+	/**
+	 *
+	 * @param fields
+	 * @return
+	 */
+	public StoryRecord create(StoryFields fields) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -37,7 +50,12 @@ public class StoryDataGateway {
         return find(keyHolder.getKey().longValue());
     }
 
-    public List<StoryRecord> findAllByProjectId(Long projectId) {
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	public List<StoryRecord> findAllByProjectId(Long projectId) {
         return jdbcTemplate.query(
             "select id, project_id, name from stories where project_id = ?",
             rowMapper, projectId

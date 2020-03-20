@@ -1,33 +1,65 @@
 package io.pivotal.pal.tracker.backlog.data;
 
+/**
+ *
+ * @author 780449
+ */
 public class StoryFields {
 
-    public final long projectId;
-    public final String name;
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final String name;
 
     private StoryFields(Builder builder) {
         projectId = builder.projectId;
         name = builder.name;
     }
 
-    public static Builder storyFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder storyFieldsBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long projectId;
         private String name;
 
-        public StoryFields build() {
+		/**
+		 *
+		 * @return
+		 */
+		public StoryFields build() {
             return new StoryFields(this);
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder name(String name) {
+			/**
+			 *
+			 * @param name
+			 * @return
+			 */
+			public Builder name(String name) {
             this.name = name;
             return this;
         }

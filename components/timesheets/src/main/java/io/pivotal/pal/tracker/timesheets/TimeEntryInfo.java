@@ -1,14 +1,45 @@
 package io.pivotal.pal.tracker.timesheets;
 
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryInfo {
-    public final long id;
-    public final long projectId;
-    public final long userId;
-    public final String date;
-    public final int hours;
-    public final String info;
 
-    public TimeEntryInfo() { // for jackson
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final String date;
+
+	/**
+	 *
+	 */
+	public final int hours;
+
+	/**
+	 *
+	 */
+	public final String info;
+
+	/**
+	 *
+	 */
+	public TimeEntryInfo() { // for jackson
         this(timeEntryInfoBuilder());
     }
 
@@ -21,11 +52,18 @@ public class TimeEntryInfo {
         info = builder.info;
     }
 
-    public static Builder timeEntryInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder timeEntryInfoBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long projectId;
         private long userId;
@@ -33,37 +71,71 @@ public class TimeEntryInfo {
         private int hours;
         private String info;
 
-        public Builder id(long id) {
+			/**
+			 *
+			 * @param id
+			 * @return
+			 */
+			public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+		/**
+		 *
+		 * @param userId
+		 * @return
+		 */
+		public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder date(String date) {
+		/**
+		 *
+		 * @param date
+		 * @return
+		 */
+		public Builder date(String date) {
             this.date = date;
             return this;
         }
 
-        public Builder hours(int hours) {
+		/**
+		 *
+		 * @param hours
+		 * @return
+		 */
+		public Builder hours(int hours) {
             this.hours = hours;
             return this;
         }
 
-        public Builder info(String info) {
+		/**
+		 *
+		 * @param info
+		 * @return
+		 */
+		public Builder info(String info) {
             this.info = info;
             return this;
         }
 
-        public TimeEntryInfo build() {
+			/**
+			 *
+			 * @return
+			 */
+			public TimeEntryInfo build() {
             return new TimeEntryInfo(this);
         }
     }

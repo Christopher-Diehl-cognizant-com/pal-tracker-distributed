@@ -1,14 +1,25 @@
 package io.pivotal.pal.tracker.backlog;
 
+/**
+ *
+ * @author 780449
+ */
 public class ProjectInfo {
 
-    public final boolean active;
+	/**
+	 *
+	 */
+	public final boolean active;
 
     private ProjectInfo() {
         this(false);
     }
 
-    public ProjectInfo(boolean active) {
+	/**
+	 *
+	 * @param active
+	 */
+	public ProjectInfo(boolean active) {
         this.active = active;
     }
 

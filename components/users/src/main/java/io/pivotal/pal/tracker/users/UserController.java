@@ -7,18 +7,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ *
+ * @author 780449
+ */
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserDataGateway gateway;
 
-    public UserController(UserDataGateway gateway) {
+	/**
+	 *
+	 * @param gateway
+	 */
+	public UserController(UserDataGateway gateway) {
         this.gateway = gateway;
     }
 
-
-    @GetMapping("/{userId}")
+	/**
+	 *
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping("/{userId}")
     public UserInfo show(@PathVariable long userId) {
         UserRecord record = gateway.find(userId);
 

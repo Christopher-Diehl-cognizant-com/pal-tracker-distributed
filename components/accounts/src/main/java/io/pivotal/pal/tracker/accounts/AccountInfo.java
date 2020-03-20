@@ -1,11 +1,30 @@
 package io.pivotal.pal.tracker.accounts;
 
+/**
+ *
+ * @author 780449
+ */
 public class AccountInfo {
 
-    public final long id;
-    public final long ownerId;
-    public final String name;
-    public final String info;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long ownerId;
+
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final String info;
 
     private AccountInfo() { // for jackson
         this(accountInfoBuilder());
@@ -18,36 +37,67 @@ public class AccountInfo {
         info = builder.info;
     }
 
-    public static Builder accountInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder accountInfoBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long ownerId;
         private String name;
         private String info;
 
-        public AccountInfo build() {
+		/**
+		 *
+		 * @return
+		 */
+		public AccountInfo build() {
             return new AccountInfo(this);
         }
 
-        public Builder id(long id) {
+		/**
+		 *
+		 * @param id
+		 * @return
+		 */
+		public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder ownerId(long ownerId) {
+		/**
+		 *
+		 * @param ownerId
+		 * @return
+		 */
+		public Builder ownerId(long ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
-        public Builder name(String name) {
+		/**
+		 *
+		 * @param name
+		 * @return
+		 */
+		public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder info(String info) {
+		/**
+		 *
+		 * @param info
+		 * @return
+		 */
+		public Builder info(String info) {
             this.info = info;
             return this;
         }

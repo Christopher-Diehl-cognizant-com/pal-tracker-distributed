@@ -1,10 +1,25 @@
 package io.pivotal.pal.tracker.accounts.data;
 
+/**
+ *
+ * @author 780449
+ */
 public class AccountRecord {
 
-    public final long id;
-    public final long ownerId;
-    public final String name;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long ownerId;
+
+	/**
+	 *
+	 */
+	public final String name;
 
     private AccountRecord(Builder builder) {
         this.id = builder.id;
@@ -12,30 +27,56 @@ public class AccountRecord {
         this.name = builder.name;
     }
 
-    public static Builder accountRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder accountRecordBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long ownerId;
         private String name;
 
-        public AccountRecord build() {
+		/**
+		 *
+		 * @return
+		 */
+		public AccountRecord build() {
             return new AccountRecord(this);
         }
 
-        public Builder id(long id) {
+			/**
+			 *
+			 * @param id
+			 * @return
+			 */
+			public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder ownerId(long ownerId) {
+		/**
+		 *
+		 * @param ownerId
+		 * @return
+		 */
+		public Builder ownerId(long ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
-        public Builder name(String name) {
+			/**
+			 *
+			 * @param name
+			 * @return
+			 */
+			public Builder name(String name) {
             this.name = name;
             return this;
         }

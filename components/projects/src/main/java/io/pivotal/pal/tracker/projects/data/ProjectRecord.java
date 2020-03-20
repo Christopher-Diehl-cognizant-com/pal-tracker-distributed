@@ -1,11 +1,30 @@
 package io.pivotal.pal.tracker.projects.data;
 
+/**
+ *
+ * @author 780449
+ */
 public class ProjectRecord {
 
-    public final long id;
-    public final long accountId;
-    public final String name;
-    public final boolean active;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long accountId;
+
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final boolean active;
 
     private ProjectRecord(Builder builder) {
         id = builder.id;
@@ -14,36 +33,67 @@ public class ProjectRecord {
         active = builder.active;
     }
 
-    public static Builder projectRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder projectRecordBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long accountId;
         private String name;
         private boolean active;
 
-        public ProjectRecord build() {
+			/**
+			 *
+			 * @return
+			 */
+			public ProjectRecord build() {
             return new ProjectRecord(this);
         }
 
-        public Builder id(long id) {
+			/**
+			 *
+			 * @param id
+			 * @return
+			 */
+			public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder accountId(long accountId) {
+			/**
+			 *
+			 * @param accountId
+			 * @return
+			 */
+			public Builder accountId(long accountId) {
             this.accountId = accountId;
             return this;
         }
 
-        public Builder name(String name) {
+			/**
+			 *
+			 * @param name
+			 * @return
+			 */
+			public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder active(boolean active) {
+			/**
+			 *
+			 * @param active
+			 * @return
+			 */
+			public Builder active(boolean active) {
             this.active = active;
             return this;
         }

@@ -1,10 +1,21 @@
 package io.pivotal.pal.tracker.accounts;
 
+/**
+ *
+ * @author 780449
+ */
 public class RegistrationForm {
 
-    public final String name;
+	/**
+	 *
+	 */
+	public final String name;
 
-    public RegistrationForm(String name) {
+	/**
+	 *
+	 * @param name
+	 */
+	public RegistrationForm(String name) {
         this.name = name;
     }
 

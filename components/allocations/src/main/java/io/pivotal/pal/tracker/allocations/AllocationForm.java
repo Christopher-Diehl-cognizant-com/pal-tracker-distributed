@@ -1,54 +1,107 @@
 package io.pivotal.pal.tracker.allocations;
 
+/**
+ *
+ * @author 780449
+ */
 public class AllocationForm {
 
-    public final long projectId;
-    public final long userId;
-    public final String firstDay;
-    public final String lastDay;
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final String firstDay;
+
+	/**
+	 *
+	 */
+	public final String lastDay;
 
     private AllocationForm() { // for jackson
         this(allocationFormBuilder());
     }
 
-    public AllocationForm(Builder builder) {
+	/**
+	 *
+	 * @param builder
+	 */
+	public AllocationForm(Builder builder) {
         projectId = builder.projectId;
         userId = builder.userId;
         firstDay = builder.firstDay;
         lastDay = builder.lastDay;
     }
 
-    public static Builder allocationFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder allocationFormBuilder() {
         return new Builder();
     }
 
-
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long projectId;
         private long userId;
         private String firstDay;
         private String lastDay;
 
-        public AllocationForm build() {
+		/**
+		 *
+		 * @return
+		 */
+		public AllocationForm build() {
             return new AllocationForm(this);
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+		/**
+		 *
+		 * @param userId
+		 * @return
+		 */
+		public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder firstDay(String firstDay) {
+		/**
+		 *
+		 * @param firstDay
+		 * @return
+		 */
+		public Builder firstDay(String firstDay) {
             this.firstDay = firstDay;
             return this;
         }
 
-        public Builder lastDay(String lastDay) {
+			/**
+			 *
+			 * @param lastDay
+			 * @return
+			 */
+			public Builder lastDay(String lastDay) {
             this.lastDay = lastDay;
             return this;
         }

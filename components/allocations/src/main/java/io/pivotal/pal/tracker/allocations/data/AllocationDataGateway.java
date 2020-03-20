@@ -13,17 +13,29 @@ import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
+/**
+ *
+ * @author 780449
+ */
 @Repository
 public class AllocationDataGateway {
 
     private JdbcTemplate jdbcTemplate;
 
-    public AllocationDataGateway(DataSource dataSource) {
+	/**
+	 *
+	 * @param dataSource
+	 */
+	public AllocationDataGateway(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-    public AllocationRecord create(AllocationFields fields) {
+	/**
+	 *
+	 * @param fields
+	 * @return
+	 */
+	public AllocationRecord create(AllocationFields fields) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -41,7 +53,12 @@ public class AllocationDataGateway {
         return find(keyHolder.getKey().longValue());
     }
 
-    public List<AllocationRecord> findAllByProjectId(Long projectId) {
+	/**
+	 *
+	 * @param projectId
+	 * @return
+	 */
+	public List<AllocationRecord> findAllByProjectId(Long projectId) {
         return jdbcTemplate.query(
             "select id, project_id, user_id, first_day, last_day from allocations where project_id = ? order by first_day",
             rowMapper, projectId

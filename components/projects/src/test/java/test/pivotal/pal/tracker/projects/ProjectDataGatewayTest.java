@@ -15,20 +15,31 @@ import static io.pivotal.pal.tracker.projects.data.ProjectFields.projectFieldsBu
 import static io.pivotal.pal.tracker.projects.data.ProjectRecord.projectRecordBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class ProjectDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_registration_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private ProjectDataGateway gateway = new ProjectDataGateway(testScenarioSupport.dataSource);
 
-    @Before
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Before
     public void setUp() throws Exception {
         template.execute("DELETE FROM projects;");
         template.execute("DELETE FROM accounts;");
         template.execute("DELETE FROM users;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         template.execute("insert into users (id, name) values (12, 'Jack')");
         template.execute("insert into accounts (id, owner_id, name) values (1, 12, 'anAccount')");
@@ -47,7 +58,10 @@ public class ProjectDataGatewayTest {
         assertThat(persisted.get("account_id")).isEqualTo(1L);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFindAllByAccountId() {
         template.execute("insert into users (id, name) values (12, 'Jack')");
         template.execute("insert into accounts (id, owner_id, name) values (1, 12, 'anAccount')");
@@ -62,7 +76,10 @@ public class ProjectDataGatewayTest {
         );
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFind() {
         template.execute("insert into users (id, name) values (12, 'Jack')");
         template.execute("insert into accounts (id, owner_id, name) values (1, 12, 'anAccount')");

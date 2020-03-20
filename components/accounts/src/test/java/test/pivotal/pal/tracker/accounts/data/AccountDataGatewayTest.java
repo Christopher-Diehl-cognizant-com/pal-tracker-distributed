@@ -13,20 +13,30 @@ import java.util.Map;
 import static io.pivotal.pal.tracker.accounts.data.AccountRecord.accountRecordBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class AccountDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_registration_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private AccountDataGateway gateway = new AccountDataGateway(testScenarioSupport.dataSource);
 
-    @Before
+	/**
+	 *
+	 */
+	@Before
     public void setup() {
         template.execute("DELETE FROM projects;");
         template.execute("DELETE FROM accounts;");
         template.execute("DELETE FROM users;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         template.execute("insert into users (id, name) values (12, 'Jack')");
 
@@ -43,7 +53,10 @@ public class AccountDataGatewayTest {
         assertThat(persisted.get("owner_id")).isEqualTo(12L);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFindBy() {
         template.execute("insert into users (id, name) values (12, 'Jack')");
         template.execute("insert into accounts (id, owner_id, name) values (1, 12, 'anAccount')");

@@ -10,12 +10,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+/**
+ *
+ * @author 780449
+ */
 public class UserControllerTest {
 
     private UserDataGateway gateway = mock(UserDataGateway.class);
     private UserController controller = new UserController(gateway);
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testShow() {
         doReturn(new UserRecord(3L, "Some User")).when(gateway).find(anyLong());
 

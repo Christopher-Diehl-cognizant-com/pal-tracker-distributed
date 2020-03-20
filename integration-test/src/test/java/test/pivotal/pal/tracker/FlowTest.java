@@ -15,6 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
 import static test.pivotal.pal.tracker.support.MapBuilder.jsonMapBuilder;
 
+/**
+ *
+ * @author 780449
+ */
 public class FlowTest {
 
     private final HttpClient httpClient = new HttpClient();
@@ -54,8 +58,11 @@ public class FlowTest {
         }
     }
 
-
-    @Before
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Before
     public void setup() throws Exception {
         registrationServer.startWithDatabaseName("tracker_registration_test");
         allocationsServer.startWithDatabaseName("tracker_allocations_test");
@@ -65,7 +72,10 @@ public class FlowTest {
         TestScenarioSupport.clearAllDatabases();
     }
 
-    @After
+	/**
+	 *
+	 */
+	@After
     public void tearDown() {
         registrationServer.stop();
         allocationsServer.stop();
@@ -73,7 +83,11 @@ public class FlowTest {
         timesheetsServer.stop();
     }
 
-    @Test
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Test
     public void testBasicFlow() throws Exception {
         Response response;
 

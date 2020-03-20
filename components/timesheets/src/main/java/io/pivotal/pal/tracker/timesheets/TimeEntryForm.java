@@ -1,10 +1,30 @@
 package io.pivotal.pal.tracker.timesheets;
 
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryForm {
-    public final long projectId;
-    public final long userId;
-    public final String date;
-    public final int hours;
+
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final String date;
+
+	/**
+	 *
+	 */
+	public final int hours;
 
     private TimeEntryForm() { // for jackson
         this(timeEntryFormBuilder());
@@ -17,43 +37,79 @@ public class TimeEntryForm {
         hours = builder.hours;
     }
 
-    public static Builder timeEntryFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder timeEntryFormBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long projectId;
         private long userId;
         private String date;
         private int hours;
 
-        public Builder id(long id) {
+		/**
+		 *
+		 * @param id
+		 * @return
+		 */
+		public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+		/**
+		 *
+		 * @param userId
+		 * @return
+		 */
+		public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder date(String date) {
+		/**
+		 *
+		 * @param date
+		 * @return
+		 */
+		public Builder date(String date) {
             this.date = date;
             return this;
         }
 
-        public Builder hours(Integer hours) {
+		/**
+		 *
+		 * @param hours
+		 * @return
+		 */
+		public Builder hours(Integer hours) {
             this.hours = hours;
             return this;
         }
 
-        public TimeEntryForm build() {
+			/**
+			 *
+			 * @return
+			 */
+			public TimeEntryForm build() {
             return new TimeEntryForm(this);
         }
     }

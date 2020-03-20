@@ -1,10 +1,25 @@
 package io.pivotal.pal.tracker.projects.data;
 
+/**
+ *
+ * @author 780449
+ */
 public class ProjectFields {
 
-    public final long accountId;
-    public final String name;
-    public final boolean active;
+	/**
+	 *
+	 */
+	public final long accountId;
+
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final boolean active;
 
     private ProjectFields(Builder builder) {
         accountId = builder.accountId;
@@ -12,31 +27,57 @@ public class ProjectFields {
         active = builder.active;
     }
 
-    public static Builder projectFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder projectFieldsBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
 
         private long accountId;
         private String name;
         private boolean active;
 
-        public ProjectFields build() {
+			/**
+			 *
+			 * @return
+			 */
+			public ProjectFields build() {
             return new ProjectFields(this);
         }
 
-        public Builder accountId(long accountId) {
+			/**
+			 *
+			 * @param accountId
+			 * @return
+			 */
+			public Builder accountId(long accountId) {
             this.accountId = accountId;
             return this;
         }
 
-        public Builder name(String name) {
+			/**
+			 *
+			 * @param name
+			 * @return
+			 */
+			public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder active(boolean active) {
+			/**
+			 *
+			 * @param active
+			 * @return
+			 */
+			public Builder active(boolean active) {
             this.active = active;
             return this;
         }

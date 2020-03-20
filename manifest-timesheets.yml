@@ -7,6 +7,7 @@ applications:
   instances: 1
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+    GRANT_TYPE: client_credentials
     MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS: 'always'
     MANAGEMENT_HEALTH_CIRCUITBREAKERS_ENABLED: 'TRUE'
     MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: 'info,health,metrics,circuitbreakers'
@@ -14,3 +15,4 @@ applications:
   services:
   - tracker-timesheets-database
   - tracker-service-registry
+  - tracker-sso

@@ -1,11 +1,30 @@
 package io.pivotal.pal.tracker.backlog;
 
+/**
+ *
+ * @author 780449
+ */
 public class StoryInfo {
 
-    public final long id;
-    public final long projectId;
-    public final String name;
-    public final String info;
+	/**
+	 *
+	 */
+	public final long id;
+
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final String name;
+
+	/**
+	 *
+	 */
+	public final String info;
 
     private StoryInfo() {
         this(storyInfoBuilder());
@@ -18,37 +37,67 @@ public class StoryInfo {
         info = builder.info;
     }
 
-    public static Builder storyInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder storyInfoBuilder() {
         return new Builder();
     }
 
-
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long id;
         private long projectId;
         private String name;
         private String info;
 
-        public StoryInfo build() {
+			/**
+			 *
+			 * @return
+			 */
+			public StoryInfo build() {
             return new StoryInfo(this);
         }
 
-        public Builder id(long id) {
+			/**
+			 *
+			 * @param id
+			 * @return
+			 */
+			public Builder id(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder projectId(long projectId) {
+			/**
+			 *
+			 * @param projectId
+			 * @return
+			 */
+			public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder name(String name) {
+		/**
+		 *
+		 * @param name
+		 * @return
+		 */
+		public Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder info(String info) {
+		/**
+		 *
+		 * @param info
+		 * @return
+		 */
+		public Builder info(String info) {
             this.info = info;
             return this;
         }

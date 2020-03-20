@@ -2,12 +2,31 @@ package io.pivotal.pal.tracker.timesheets.data;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryFields {
 
-    public final long projectId;
-    public final long userId;
-    public final LocalDate date;
-    public final int hours;
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final long userId;
+
+	/**
+	 *
+	 */
+	public final LocalDate date;
+
+	/**
+	 *
+	 */
+	public final int hours;
 
     private TimeEntryFields(Builder builder) {
         projectId = builder.projectId;
@@ -16,37 +35,68 @@ public class TimeEntryFields {
         hours = builder.hours;
     }
 
-    public static Builder timeEntryFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder timeEntryFieldsBuilder() {
         return new Builder();
     }
 
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
 
         private long projectId;
         private long userId;
         private LocalDate date;
         private int hours;
 
-        public TimeEntryFields build() {
+		/**
+		 *
+		 * @return
+		 */
+		public TimeEntryFields build() {
             return new TimeEntryFields(this);
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder userId(long userId) {
+		/**
+		 *
+		 * @param userId
+		 * @return
+		 */
+		public Builder userId(long userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder date(LocalDate date) {
+			/**
+			 *
+			 * @param date
+			 * @return
+			 */
+			public Builder date(LocalDate date) {
             this.date = date;
             return this;
         }
 
-        public Builder hours(int hours) {
+		/**
+		 *
+		 * @param hours
+		 * @return
+		 */
+		public Builder hours(int hours) {
             this.hours = hours;
             return this;
         }

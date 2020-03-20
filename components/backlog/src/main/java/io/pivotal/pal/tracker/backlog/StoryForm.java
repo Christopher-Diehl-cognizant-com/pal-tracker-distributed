@@ -1,9 +1,20 @@
 package io.pivotal.pal.tracker.backlog;
 
+/**
+ *
+ * @author 780449
+ */
 public class StoryForm {
 
-    public final long projectId;
-    public final String name;
+	/**
+	 *
+	 */
+	public final long projectId;
+
+	/**
+	 *
+	 */
+	public final String name;
 
     private StoryForm() {
         this(storyFormBuilder());
@@ -14,25 +25,45 @@ public class StoryForm {
         name = builder.name;
     }
 
-    public static Builder storyFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static Builder storyFormBuilder() {
         return new Builder();
     }
 
-
-    public static class Builder {
+	/**
+	 *
+	 */
+	public static class Builder {
         private long projectId;
         private String name;
 
-        public StoryForm build() {
+		/**
+		 *
+		 * @return
+		 */
+		public StoryForm build() {
             return new StoryForm(this);
         }
 
-        public Builder projectId(long projectId) {
+		/**
+		 *
+		 * @param projectId
+		 * @return
+		 */
+		public Builder projectId(long projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder name(String name) {
+		/**
+		 *
+		 * @param name
+		 * @return
+		 */
+		public Builder name(String name) {
             this.name = name;
             return this;
         }

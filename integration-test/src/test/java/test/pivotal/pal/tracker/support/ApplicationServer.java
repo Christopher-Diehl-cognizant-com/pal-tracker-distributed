@@ -8,6 +8,10 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.fail;
 import static test.pivotal.pal.tracker.support.MapBuilder.envMapBuilder;
 
+/**
+ *
+ * @author 780449
+ */
 public class ApplicationServer {
 
     private final String jarPath;
@@ -15,13 +19,23 @@ public class ApplicationServer {
 
     private Process serverProcess;
 
-    public ApplicationServer(String jarPath, String port) {
+	/**
+	 *
+	 * @param jarPath
+	 * @param port
+	 */
+	public ApplicationServer(String jarPath, String port) {
         this.jarPath = jarPath;
         this.port = port;
     }
 
-
-    public void start(Map<String, String> env) throws IOException, InterruptedException {
+	/**
+	 *
+	 * @param env
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public void start(Map<String, String> env) throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder()
             .command("java", "-jar", jarPath)
             .inheritIO();
@@ -32,7 +46,13 @@ public class ApplicationServer {
         serverProcess = processBuilder.start();
     }
 
-    public void startWithDatabaseName(String dbName) throws IOException, InterruptedException {
+	/**
+	 *
+	 * @param dbName
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public void startWithDatabaseName(String dbName) throws IOException, InterruptedException {
         String dbUrl = "jdbc:mysql://localhost:3306/" + dbName + "?useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false";
 
         start(envMapBuilder()
@@ -40,16 +60,24 @@ public class ApplicationServer {
             .put("EUREKA_CLIENT_ENABLED", "false")
             .put("RIBBON_EUREKA_ENABLED", "false")
             .put("REGISTRATION_SERVER_RIBBON_LISTOFSERVERS", "http://localhost:8883")
+            .put("APPLICATION_OAUTH_ENABLED", "false")
             .build()
         );
     }
 
-    public void stop() {
+	/**
+	 *
+	 */
+	public void stop() {
         serverProcess.destroyForcibly();
     }
 
-
-    public static void waitOnPorts(String... ports) throws InterruptedException {
+	/**
+	 *
+	 * @param ports
+	 * @throws InterruptedException
+	 */
+	public static void waitOnPorts(String... ports) throws InterruptedException {
         for (String port : ports) waitUntilServerIsUp(port);
     }
 

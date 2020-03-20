@@ -12,9 +12,17 @@ import static io.pivotal.pal.tracker.allocations.AllocationInfo.allocationInfoBu
 import static io.pivotal.pal.tracker.allocations.data.AllocationFields.allocationFieldsBuilder;
 import static io.pivotal.pal.tracker.allocations.data.AllocationRecord.allocationRecordBuilder;
 
+/**
+ *
+ * @author 780449
+ */
 public class TestBuilders {
 
-    public static AllocationRecord.Builder testAllocationRecordBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static AllocationRecord.Builder testAllocationRecordBuilder() {
         return allocationRecordBuilder()
             .id(12L)
             .projectId(13L)
@@ -23,7 +31,11 @@ public class TestBuilders {
             .lastDay(LocalDate.parse("2017-02-23"));
     }
 
-    public static AllocationFields.Builder testAllocationFieldsBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static AllocationFields.Builder testAllocationFieldsBuilder() {
         return allocationFieldsBuilder()
             .projectId(13L)
             .userId(14L)
@@ -31,7 +43,11 @@ public class TestBuilders {
             .lastDay(LocalDate.parse("2017-02-23"));
     }
 
-    public static AllocationForm.Builder testAllocationFormBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static AllocationForm.Builder testAllocationFormBuilder() {
         return allocationFormBuilder()
             .projectId(13L)
             .userId(14L)
@@ -39,7 +55,11 @@ public class TestBuilders {
             .lastDay("2017-02-23");
     }
 
-    public static AllocationInfo.Builder testAllocationInfoBuilder() {
+	/**
+	 *
+	 * @return
+	 */
+	public static AllocationInfo.Builder testAllocationInfoBuilder() {
         return allocationInfoBuilder()
             .id(12L)
             .projectId(13L)

@@ -17,19 +17,29 @@ import static io.pivotal.pal.tracker.timesheets.data.TimeEntryFields.timeEntryFi
 import static io.pivotal.pal.tracker.timesheets.data.TimeEntryRecord.timeEntryRecordBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * @author 780449
+ */
 public class TimeEntryDataGatewayTest {
 
     private TestScenarioSupport testScenarioSupport = new TestScenarioSupport("tracker_timesheets_test");
     private JdbcTemplate template = testScenarioSupport.template;
     private TimeEntryDataGateway gateway = new TimeEntryDataGateway(testScenarioSupport.dataSource);
 
-
-    @Before
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Before
     public void setUp() throws Exception {
         template.execute("DELETE FROM time_entries;");
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testCreate() {
         TimeEntryFields fields = timeEntryFieldsBuilder()
             .projectId(22L)
@@ -54,7 +64,10 @@ public class TimeEntryDataGatewayTest {
         assertThat(persisted.get("hours")).isEqualTo(8);
     }
 
-    @Test
+	/**
+	 *
+	 */
+	@Test
     public void testFindAllByUserId() {
         template.execute("insert into time_entries (id, project_id, user_id, date, hours) values (2346, 22, 12, '2016-01-13', 8)");
 
